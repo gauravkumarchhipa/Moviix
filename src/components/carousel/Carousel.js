@@ -21,6 +21,19 @@ const Carousel = ({ data, loading, endpoint, title}) => {
   const navigation = (dir)=>{
 
   }
+
+  const skItem = () => {
+    return (
+      <div className="skeletonItem">
+        <div className="posterBlock skelton">
+        </div>
+        <div className="textBlock">
+          <div className="title skelton"></div>
+          <div className="date skelton"></div>
+        </div>
+      </div>
+    )
+  }
   return (
     <div className="carousel">
       <ContentWrapper>
@@ -46,6 +59,7 @@ const Carousel = ({ data, loading, endpoint, title}) => {
                   >
                     <div className="posterBlock">
                       <Img src={posterUrl} alt=""/>
+                      <CircleRating rating={item.vote_average.toFixed(1)}/>
                     </div>
                     <div className="textBlock">
                       <span className="title">
@@ -62,7 +76,13 @@ const Carousel = ({ data, loading, endpoint, title}) => {
               })}
           </div>
         ) : (
-          <span>Loading...</span>
+          <div className="loadingSkeleton">
+            {skItem()}
+            {skItem()}
+            {skItem()}
+            {skItem()}
+            {skItem()}
+          </div>
         )}
       </ContentWrapper>
     </div>
